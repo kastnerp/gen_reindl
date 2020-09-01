@@ -1,13 +1,29 @@
 # gen_reindl
  Python port of 'gen_reindl.exe', a program that transforms global irradiances into orizontal diffuse and direct normal irradiances.
- 
- 
+
+
 # Usage
 
-calc_split(4, 22, 8.333333333, 107)
+```
+lon = -103.98
+lat = 1.37
+time_zone = -120
+
+gr = GenReindl(lat, lon, time_zone)
+
+print("irrad_beam_nor, irrad_dif\n")
+print(gr.calc_split(4, 22, 8.333333333, 107))
+print(gr.calc_split(4, 22, 8.416666667, 121))
+print(gr.calc_split(4, 22, 8.5, 137)
+print(gr.calc_split(4, 22, 8.583333333, 151))
+print(gr.calc_split(4, 22, 8.666666667, 159))
+print(gr.calc_split(4, 22, 8.75, 169))
+print(gr.calc_split(4, 22, 8.833333333, 178))
+print(gr.calc_split(4, 22, 8.916666667, 184))
+```
 
 # From the original cli when calling gen_reindl.exe
- 
+
 gen_reindl:  
 Program that transforms global irradiances into orizontal diffuse and direct normal irradiances  
 Note that the -o option has to be specified!  
