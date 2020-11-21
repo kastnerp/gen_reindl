@@ -37,7 +37,7 @@ Supported options are:
 -a     latitude [DEG, North is positive]  
 
 
-# More info
+# More info about testing
 
 http://onebuilding.org/archive/bldg-sim-onebuilding.org/2015-May/046325.html
 
