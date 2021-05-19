@@ -1,7 +1,10 @@
 import unittest
-import math
 
 from gen_reindl import *
+
+
+def round_number(f):
+    return round(f, 0)
 
 
 class TestGenReindl(unittest.TestCase):
@@ -18,9 +21,6 @@ class TestGenReindl(unittest.TestCase):
         # Action
 
         gr = GenReindl(lat, lon, time_zone)
-
-        def round_number(f):
-            return round(f, 0)
 
         # Assert
 
@@ -40,6 +40,37 @@ class TestGenReindl(unittest.TestCase):
         self.assertTrue(round_number(gr.calc_split(4, 22, 8.833333333, 178)[1]) == 169)
         self.assertTrue(round_number(gr.calc_split(4, 22, 8.916666667, 184)[0]) == 19)
         self.assertTrue(round_number(gr.calc_split(4, 22, 8.916666667, 184)[1]) == 175)
+
+    def test_calculte_correct_result_vectorized(self):
+        # results taken from here: http://onebuilding.org/archive/bldg-sim-onebuilding.org/2015-May/046325.html
+
+        # Assume
+
+        lon = -103.98
+        lat = 1.37
+        time_zone = -120
+
+        month = np.array([4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4])
+
+        day = np.array([22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22])
+
+        hour = np.array(
+            [8.333333333, 8.333333333, 8.416666667, 8.416666667, 8.5, 8.5, 8.583333333, 8.583333333, 8.666666667,
+             8.666666667, 8.75, 8.75, 8.833333333, 8.833333333, 8.916666667, 8.916666667])
+
+        GHR = np.array([107, 107, 121, 121, 137, 137, 151, 151, 159, 159, 169, 169, 178, 178, 184, 184])
+        # Action
+
+        gr = GenReindl(lat, lon, time_zone)
+
+        # Assert
+
+        DNI, DHR = gr.calc_split_vectorized(gr, month, day, hour, GHR)
+
+        self.assertTrue(round_number(DNI[0]) == 12)
+        self.assertTrue(round_number(DHR[0]) == 103)
+        self.assertTrue(round_number(DNI[-1]) == 19)
+        self.assertTrue(round_number(DHR[-1]) == 175)
 
 # Original cli docstring
 
