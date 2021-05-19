@@ -12,9 +12,8 @@ lat = 1.37
 time_zone = -120
 
 gr = GenReindl(lat, lon, time_zone)
-
-print("irrad_beam_nor, irrad_dif\n")
-
+DNI, DHR = gr.calc_split(4, 22, 8.333333333, 107)
+DNI, DHR 
 ```
 
 ## Vectorized
