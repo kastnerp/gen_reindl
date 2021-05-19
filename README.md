@@ -4,6 +4,8 @@
 
 # Usage
 
+## Non-vectorized
+
 ```
 lon = -103.98
 lat = 1.37
@@ -12,14 +14,30 @@ time_zone = -120
 gr = GenReindl(lat, lon, time_zone)
 
 print("irrad_beam_nor, irrad_dif\n")
-print(gr.calc_split(4, 22, 8.333333333, 107))
-print(gr.calc_split(4, 22, 8.416666667, 121))
-print(gr.calc_split(4, 22, 8.5, 137)
-print(gr.calc_split(4, 22, 8.583333333, 151))
-print(gr.calc_split(4, 22, 8.666666667, 159))
-print(gr.calc_split(4, 22, 8.75, 169))
-print(gr.calc_split(4, 22, 8.833333333, 178))
-print(gr.calc_split(4, 22, 8.916666667, 184))
+
+```
+
+## Vectorized
+
+```
+lon = -103.98
+lat = 1.37
+time_zone = -120
+
+month = np.array([4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4])
+
+day = np.array([22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22])
+
+hour = np.array([8.333333333, 8.333333333, 8.416666667, 8.416666667, 8.5, 8.5, 8.583333333, 8.583333333, 8.666666667,
+     8.666666667, 8.75, 8.75, 8.833333333, 8.833333333, 8.916666667, 8.916666667])
+
+GHR = np.array([107, 107, 121, 121, 137, 137, 151, 151, 159, 159, 169, 169, 178, 178, 184, 184])
+
+
+gr = GenReindl(lat, lon, time_zone)
+
+DNI, DHR = gr.calc_split_vectorized(gr, month, day, hour, GHR)
+DNI, DHR
 ```
 
 # From the original cli when calling gen_reindl.exe
