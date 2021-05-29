@@ -1,5 +1,6 @@
 import unittest
 import sys
+import numpy as np
 
 sys.path.insert(1, r'..')
 from gen_reindl import *
