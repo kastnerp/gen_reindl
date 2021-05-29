@@ -1,9 +1,40 @@
 import math
 import numpy as np
 
+
+def month_and_day_to_julian_day(month, day):
+    if month == 1:
+        return day
+    if month == 2:
+        return day + 31
+    if month == 3:
+        return day + 59
+    if month == 4:
+        return day + 90
+    if month == 5:
+        return day + 120
+    if month == 6:
+        return day + 151
+    if month == 7:
+        return day + 181
+    if month == 8:
+        return day + 212
+    if month == 9:
+        return day + 243
+    if month == 10:
+        return day + 273
+    if month == 11:
+        return day + 304
+    if month == 12:
+        return day + 334
+    else:
+        print("bad month")
+
+
 class GenReindl:
     """
-    Python port of 'gen_reindl.exe', a program that transforms global irradiances into orizontal diffuse and direct normal irradiances.
+    Python port of 'gen_reindl.exe', a program that transforms global irradiances into orizontal diffuse and direct
+    normal irradiances.
 
     ...
 
@@ -17,14 +48,11 @@ class GenReindl:
     def __init__(self, lat, lon, time_zone):
 
         """
-        Parameters
-        ----------
-        lat  : float
-            latitude (north positive)
-        lon : float
-            longitude (west positive)
-        time_zone  : int
-            Time zone in a multiple of 15 degrees from the meridian. Example: for Singapore, UTC+8 * 15 = -120, despite a -103.98 longitude.
+
+        Parameters ---------- lat  : float latitude (north positive) lon : float longitude (west positive) time_zone
+        : int Time zone in a multiple of 15 degrees from the meridian. Example: for Singapore, UTC+8 * 15 = -120,
+        despite a -103.98 longitude.
+
         """
 
         self.solar_constant_e = 1367.0
@@ -39,38 +67,6 @@ class GenReindl:
         self.day = None
         self.irrad_beam_nor = None
         self.irrad_dif = None
-
-    def month_and_day_to_julian_day(self, month, day):
-        if month == 1:
-            return day
-        if month == 2:
-            return day + 31
-        if month == 3:
-            return day + 59
-        if month == 4:
-            return day + 90
-        if month == 5:
-            return day + 120
-        if month == 6:
-            return day + 151
-        if month == 7:
-            return day + 181
-        if month == 8:
-            return day + 212
-        if month == 9:
-            return day + 243
-        if month == 10:
-            return day + 273
-        if month == 11:
-            return day + 304
-        if month == 12:
-            return day + 334
-        else:
-            print("bad month")
-
-
-
-
 
     def solar_elev_azi_ecc(self, latitude,
                            longitude,
@@ -174,7 +170,7 @@ class GenReindl:
             Direct normal irradiation and diffuse horizontal irradiation
         """
 
-        jday = self.month_and_day_to_julian_day(month, day)
+        jday = month_and_day_to_julian_day(month, day)
 
         if irrad_glo < 0 or irrad_glo > self.solar_constant_e:  # / * check irradiances and exit if necessary * /
             irrad_glo = self.solar_constant_e
@@ -213,7 +209,4 @@ class GenReindl:
 
         return irrad_beam_nor, irrad_dif
 
-
     calc_split_vectorized = np.vectorize(calc_split)
-
-
