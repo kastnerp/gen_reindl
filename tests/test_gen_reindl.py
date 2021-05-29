@@ -1,5 +1,6 @@
 import unittest
-
+import sys
+sys.path.insert(1, r'..')
 from gen_reindl import *
 
 
@@ -9,7 +10,7 @@ def round_number(f):
 
 class TestGenReindl(unittest.TestCase):
 
-    def test_calculte_correct_result(self):
+    def test_calculate_correct_result(self):
         # results taken from here: http://onebuilding.org/archive/bldg-sim-onebuilding.org/2015-May/046325.html
 
         # Assume
@@ -41,7 +42,7 @@ class TestGenReindl(unittest.TestCase):
         self.assertTrue(round_number(gr.calc_split(4, 22, 8.916666667, 184)[0]) == 19)
         self.assertTrue(round_number(gr.calc_split(4, 22, 8.916666667, 184)[1]) == 175)
 
-    def test_calculte_correct_result_vectorized(self):
+    def test_calculate_correct_result_vectorized(self):
         # results taken from here: http://onebuilding.org/archive/bldg-sim-onebuilding.org/2015-May/046325.html
 
         # Assume
