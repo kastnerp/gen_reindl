@@ -1,3 +1,5 @@
+![example workflow](https://github.com/kastnerp/gen_reindl/actions/workflows/tests.yml/badge.svg)
+
 # gen_reindl
  Python port of `gen_reindl.exe`, a program that transforms global irradiances into horizontal diffuse and direct normal irradiances.
 
