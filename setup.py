@@ -180,7 +180,7 @@ setup(
     # executes the function `main` from this package when invoked:
     entry_points={  # Optional
         'console_scripts': [
-            'gen_reindl=gen_reindl:main',
+            'gen_reindl=main',
         ],
     },
 
