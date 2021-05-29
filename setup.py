@@ -178,11 +178,11 @@ setup(
     #
     # For example, the following would provide a command called `sample` which
     # executes the function `main` from this package when invoked:
-    entry_points={  # Optional
-        'console_scripts': [
-            'gen_reindl=main',
-        ],
-    },
+    #entry_points={  # Optional
+    #    'console_scripts': [
+    #        'gen_reindl=gen_reindl:main',
+    #    ],
+    #},
 
     # List additional URLs that are relevant to your project as a dict.
     #

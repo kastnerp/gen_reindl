@@ -1,5 +1,4 @@
 import unittest
-import sys
 import numpy as np
 
 from gen_reindl import GenReindl
@@ -22,7 +21,9 @@ class TestGenReindl(unittest.TestCase):
 
         # Action
 
-        gr = GenReindl(lat, lon, time_zone)
+
+
+        gr = GenReindl.CreateLocation(lat, lon, time_zone)
 
         # Assert
 
@@ -63,7 +64,7 @@ class TestGenReindl(unittest.TestCase):
         GHR = np.array([107, 107, 121, 121, 137, 137, 151, 151, 159, 159, 169, 169, 178, 178, 184, 184])
         # Action
 
-        gr = GenReindl(lat, lon, time_zone)
+        gr = GenReindl.CreateLocation(lat, lon, time_zone)
 
         # Assert
 
