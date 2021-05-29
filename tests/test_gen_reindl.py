@@ -2,8 +2,7 @@ import unittest
 import sys
 import numpy as np
 
-sys.path.insert(1, r'..')
-from gen_reindl import *
+from gen_reindl import GenReindl
 
 
 def round_number(f):
@@ -74,6 +73,10 @@ class TestGenReindl(unittest.TestCase):
         self.assertTrue(round_number(DHR[0]) == 103)
         self.assertTrue(round_number(DNI[-1]) == 19)
         self.assertTrue(round_number(DHR[-1]) == 175)
+
+
+if __name__ == '__main__':
+    unittest.main()
 
 # Original cli docstring
 
