@@ -2,13 +2,17 @@
 
 # gen_reindl
  Python port of `gen_reindl.exe`, a program that transforms global irradiances into horizontal diffuse and direct normal irradiances.
+ 
+ # Installation
+ 
+ `pip install git+https://github.com/kastnerp/gen_reindl@master`
 
 
 # Usage
 
 ## Non-vectorized
 
-```
+```python
 from gen_reindl import GenReindl
 
 lon = -103.98
@@ -22,7 +26,7 @@ DNI, DHR
 
 ## Vectorized
 
-```
+```python
 from gen_reindl import GenReindl
 
 lon = -103.98
