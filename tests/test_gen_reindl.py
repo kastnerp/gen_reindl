@@ -22,22 +22,22 @@ class TestGenReindl(unittest.TestCase):
 
         # Assert
 
-        self.assertTrue(round(gr.calc_split(4, 22, 8.33, 107)[0]) == 12)
-        self.assertTrue(round(gr.calc_split(4, 22, 8.33, 107)[1]) == 103)
-        self.assertTrue(round(gr.calc_split(4, 22, 8.41, 121)[0]) == 14)
-        self.assertTrue(round(gr.calc_split(4, 22, 8.41, 121)[1]) == 116)
-        self.assertTrue(round(gr.calc_split(4, 22, 8.50, 137)[0]) == 17)
-        self.assertTrue(round(gr.calc_split(4, 22, 8.50, 137)[1]) == 131)
-        self.assertTrue(round(gr.calc_split(4, 22, 8.58, 151)[0]) == 19)
-        self.assertTrue(round(gr.calc_split(4, 22, 8.58, 151)[1]) == 144)
-        self.assertTrue(round(gr.calc_split(4, 22, 8.66, 159)[0]) == 19)
-        self.assertTrue(round(gr.calc_split(4, 22, 8.66, 159)[1]) == 151)
-        self.assertTrue(round(gr.calc_split(4, 22, 8.75, 169)[0]) == 19)
-        self.assertTrue(round(gr.calc_split(4, 22, 8.75, 169)[1]) == 161)
-        self.assertTrue(round(gr.calc_split(4, 22, 8.83, 178)[0]) == 20)
-        self.assertTrue(round(gr.calc_split(4, 22, 8.83, 178)[1]) == 169)
-        self.assertTrue(round(gr.calc_split(4, 22, 8.91, 184)[0]) == 19)
-        self.assertTrue(round(gr.calc_split(4, 22, 8.91, 184)[1]) == 175)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.33, 107)[0]), 12)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.33, 107)[1]), 103)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.41, 121)[0]), 14)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.41, 121)[1]), 116)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.50, 137)[0]), 17)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.50, 137)[1]), 131)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.58, 151)[0]), 19)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.58, 151)[1]), 144)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.66, 159)[0]), 19)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.66, 159)[1]), 151)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.75, 169)[0]), 19)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.75, 169)[1]), 161)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.83, 178)[0]), 20)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.83, 178)[1]), 169)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.91, 184)[0]), 19)
+        self.assertEqual(round(gr.calc_split(4, 22, 8.91, 184)[1]), 175)
 
     def test_calculate_correct_result_vectorized(self):
         # results taken from here: http://onebuilding.org/archive/bldg-sim-onebuilding.org/2015-May/046325.html
@@ -79,10 +79,10 @@ class TestGenReindl(unittest.TestCase):
 
         DNI, DHR = gr.calc_split_vectorized(gr, month, day, hour, GHR)
 
-        self.assertTrue(round(DNI[0]) == 12)
-        self.assertTrue(round(DHR[0]) == 103)
-        self.assertTrue(round(DNI[-1]) == 19)
-        self.assertTrue(round(DHR[-1]) == 175)
+        self.assertEqual(round(DNI[0]), 12)
+        self.assertEqual(round(DHR[0]), 103)
+        self.assertEqual(round(DNI[-1]), 19)
+        self.assertEqual(round(DHR[-1]), 175)
 
 
 if __name__ == '__main__':
