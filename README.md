@@ -1,12 +1,12 @@
 [![Python package](https://github.com/kastnerp/gen_reindl/actions/workflows/python-package.yml/badge.svg)](https://github.com/kastnerp/gen_reindl/actions/workflows/python-package.yml)
 
 # gen_reindl
- Python port of `gen_reindl.exe`, a program that transforms global irradiances into horizontal diffuse and direct normal irradiances.
- 
- # Installation
- 
- `pip install git+https://github.com/kastnerp/gen_reindl@master`
 
+ Python port of `gen_reindl.exe`, a program that transforms global irradiances into horizontal diffuse and direct normal irradiances.
+
+# Installation
+
+ `pip install git+https://github.com/kastnerp/gen_reindl@master`
 
 # Usage
 
@@ -14,6 +14,7 @@
 
 ```python
 from gen_reindl import GenReindl
+import numpy as np
 
 lon = -103.98
 lat = 1.37
@@ -28,6 +29,7 @@ DNI, DHR
 
 ```python
 from gen_reindl import GenReindl
+import numpy as np
 
 lon = -103.98
 lat = 1.37
@@ -50,7 +52,7 @@ DNI, DHR
 
 # Comments from the original cli flags when calling `gen_reindl.exe`
 
-## gen_reindl 
+## gen_reindl
 
 Program that transforms global irradiances into orizontal diffuse and direct normal irradiances  
 _Note that the `-o` option has to be specified!_  
@@ -63,13 +65,11 @@ Supported options are:
 ``-l ``    longitude [DEG, West is positive]  
 ``-a ``    latitude [DEG, North is positive]  
 
-
 # More info about testing
 
 http://onebuilding.org/archive/bldg-sim-onebuilding.org/2015-May/046325.html
 
-
-````
+```
 Hi Phil,
 
 The gen_reindl program that comes with Daysim <http://daysim.ning.com/>
@@ -113,3 +113,4 @@ diffuse horizontal.
 
 Best,
 Alstan
+```
