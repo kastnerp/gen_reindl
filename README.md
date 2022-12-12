@@ -1,23 +1,29 @@
 [![Python package](https://github.com/kastnerp/gen_reindl/actions/workflows/python-package.yml/badge.svg)](https://github.com/kastnerp/gen_reindl/actions/workflows/python-package.yml)
 
 # gen_reindl
+
  Python port of `gen_reindl.exe`, a program that transforms global irradiances into horizontal diffuse and direct normal irradiances.
- 
- # Installation
- 
+
+# Installation
+
  `pip install git+https://github.com/kastnerp/gen_reindl@master`
 
-
 # Usage
+
+
+
+<img title="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Latitude_and_Longitude_of_the_Earth.svg/2560px-Latitude_and_Longitude_of_the_Earth.svg.png" alt="File:Latitude and Longitude of the Earth.svg - Wikimedia Commons" width="621">
 
 ## Non-vectorized
 
 ```python
 from gen_reindl import GenReindl
+import numpy as np
 
-lon = -103.98
-lat = 1.37
-time_zone = -120
+# https://goo.gl/maps/JuRPaUZffZqS9iJU8
+lon = -103.98 # Singapore (west positive)
+lat = 1.37 # Singapore (north positive)
+time_zone = -120 # UTC+8 * 15 = -120
 
 gr = GenReindl.CreateLocation(lat, lon, time_zone)
 DNI, DHR = gr.calc_split(4, 22, 8.33, 107)
@@ -28,29 +34,27 @@ DNI, DHR
 
 ```python
 from gen_reindl import GenReindl
+import numpy as np
+import pandas as pd
 
-lon = -103.98
-lat = 1.37
-time_zone = -120
+# https://goo.gl/maps/JuRPaUZffZqS9iJU8
+lon = -103.98 # Singapore (west positive)
+lat = 1.37 # Singapore (north positive)
+time_zone = -120 # UTC+8 * 15 = -120
 
 month = np.array([4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4])
-
 day = np.array([22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22])
-
 hour = np.array([8.33,8.33,8.41,8.41,8.50,8.50,8.58,8.58,8.66,8.66,8.75,8.75,8.83,8.83,8.91,8.91])
-
 GHR = np.array([107, 107, 121, 121, 137, 137, 151, 151, 159, 159, 169, 169, 178, 178, 184, 184])
 
-
 gr = GenReindl.CreateLocation(lat, lon, time_zone)
-
 DNI, DHR = gr.calc_split_vectorized(gr, month, day, hour, GHR)
-DNI, DHR
+pd.DataFrame(data = np.array([month, day, hour, GHR, DNI, DHR]).T, columns = ['Month', 'Day', 'Hour', 'GHR', 'DNI', 'DHR'])
 ```
 
 # Comments from the original cli flags when calling `gen_reindl.exe`
 
-## gen_reindl 
+## gen_reindl
 
 Program that transforms global irradiances into orizontal diffuse and direct normal irradiances  
 _Note that the `-o` option has to be specified!_  
@@ -63,13 +67,11 @@ Supported options are:
 ``-l ``    longitude [DEG, West is positive]  
 ``-a ``    latitude [DEG, North is positive]  
 
-
 # More info about testing
 
 http://onebuilding.org/archive/bldg-sim-onebuilding.org/2015-May/046325.html
 
-
-````
+```
 Hi Phil,
 
 The gen_reindl program that comes with Daysim <http://daysim.ning.com/>
@@ -82,10 +84,10 @@ h(decimal)    gh_irrad* like the below.
 
     4    22    8.333333333    107
     4    22    8.416666667    121
-    4    22    8.5    137
+    4    22    8.5            137
     4    22    8.583333333    151
     4    22    8.666666667    159
-    4    22    8.75    169
+    4    22    8.75           169
     4    22    8.833333333    178
     4    22    8.916666667    184
 
@@ -113,3 +115,4 @@ diffuse horizontal.
 
 Best,
 Alstan
+```
